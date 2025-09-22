@@ -13,6 +13,11 @@
       href="https://static.cloud.coveo.com/atomic/v3/themes/coveo.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+
     <script>
       (async () => {
         await customElements.whenDefined("atomic-search-interface");
@@ -25,9 +30,37 @@
         searchInterface.executeFirstSearch();
       })();
     </script>
+
+    <style>
+      .banner {
+        display: flex;
+        align-items: center;
+        height: 150px;
+        background-color: white; /* Bootstrap blue */
+        padding: 10px;
+        /* Bootstrap blue */
+        color: #007bff;
+        font-family: Arial, sans-serif;
+      }
+
+      .banner img {
+        height: 150px; /* Slightly smaller than banner height for padding */
+        margin-right: 20px;
+      }
+
+      .banner-text {
+        font-size: 36px;
+        font-weight: bold;
+        font-family: "Orbitron", sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <h1>Pokemon Challenge</h1>
+    <div class="banner">
+      <img src="./images/pokemon-banner.png" alt="Banner Image" />
+      <div class="banner-text">Pokemon Search</div>
+    </div>
+
     <atomic-search-interface
       id="search"
       fields-to-include='["pokemonimg"]'
