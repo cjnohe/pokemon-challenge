@@ -63,7 +63,7 @@
 
     <atomic-search-interface
       id="search"
-      fields-to-include='["pokemonimg"]'
+      fields-to-include='["pokemonimg", "pokemonspecies", "pokemonabilities", "pokemonscore", "pokemontype", "pokemongen","pokemonname"]'
       search-hub="Pokemon-Public"
     >
       <atomic-search-layout>
@@ -82,13 +82,40 @@
               field="pokemontype"
               label="Pokemon Type"
             ></atomic-facet>
+            <atomic-facet
+              field="pokemonabilities"
+              label="Pokemon Abilities"
+            ></atomic-facet>
+            <atomic-numeric-facet
+              field="pokemonscore"
+              label="Base Stat Total"
+              display-values-as="link"
+            >
+              <atomic-numeric-range
+                start="100"
+                end="300"
+                label="Weak"
+              ></atomic-numeric-range>
+              <atomic-numeric-range
+                start="301"
+                end="500"
+                label="Strong"
+              ></atomic-numeric-range>
+              <atomic-numeric-range
+                start="501"
+                end="100000"
+                label="Super"
+              ></atomic-numeric-range>
+            </atomic-numeric-facet>
           </atomic-facet-manager>
         </atomic-layout-section>
         <atomic-layout-section section="main">
+          <atomic-generated-answer max-height="150px"></atomic-generated-answer>
           <atomic-layout-section section="status">
             <atomic-did-you-mean></atomic-did-you-mean>
             <atomic-breadbox></atomic-breadbox>
             <atomic-refine-toggle></atomic-refine-toggle>
+            <atomic-results-per-page></atomic-results-per-page>
           </atomic-layout-section>
           <atomic-layout-section section="results">
             <atomic-result-list
@@ -98,22 +125,31 @@
             >
               <atomic-result-template>
                 <template>
-                  <!-- ** Add the code from the Visual Result Section here ** -->
+                  <atomic-result-section-title>
+                    <atomic-result-link target="_blank">
+                      <a slot="attributes" target="_blank"></a>
+                    </atomic-result-link>
+                  </atomic-result-section-title>
+                  <p>
+                    <strong>
+                      Name:
+                      <atomic-result-text
+                        field="pokemonname"
+                      ></atomic-result-text></strong
+                    ><br />
+                    BST:
+                    <atomic-result-number field="pokemonscore">
+                    </atomic-result-number
+                    ><br />
+                    Species:
+                    <atomic-result-text field="pokemonspecies">
+                    </atomic-result-text>
+                  </p>
                   <atomic-result-section-visual>
                     <atomic-result-image
                       field="pokemonimg"
                     ></atomic-result-image>
                   </atomic-result-section-visual>
-                  <!-- ** Add the code from the Badge Result Section here ** -->
-
-                  <!-- ** Add the code from the Title Metadata Result Section here ** -->
-
-                  <!-- ** Add the code from the Bottom Metadata Result Section here ** -->
-                  <atomic-result-section-title>
-                    <atomic-result-link>
-                      <a slot="attributes" target="_blank"></a>
-                    </atomic-result-link>
-                  </atomic-result-section-title>
                   <atomic-result-section-excerpt>
                     <atomic-result-text field="excerpt"></atomic-result-text>
                   </atomic-result-section-excerpt>
